@@ -7,7 +7,3 @@ public class Tester {
 		System.out.println(g);
 	}
 }
-/**
-private static int totalCost;
-public static Path shortestPath(Graph graph, String startVertexName, String endVertexName) {}
-**/

@@ -2,6 +2,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 /**
  * 
@@ -11,9 +12,10 @@ import java.util.Scanner;
 public class Graph {
 	public static boolean useDistCost = true;
 	public static boolean returnAddress = false;
+	public static boolean longestDist = false;
 	
-	private HashMap<String, Vertex> vertices;
-	private ArrayList<Edge> edges;
+	public HashMap<String, Vertex> vertices;
+	public ArrayList<Edge> edges;
 	
 	public Graph(String fileName) {
 		vertices = new HashMap<String, Vertex>();
@@ -56,4 +58,31 @@ public class Graph {
 				s.append(e).append("\n");
 			return s.toString();
 		}
+
+	public Vertex getVertex(String name) {
+		return vertices.get(name);
+	}
+	
+	// Method that Display can call to get all the Vertex labels from the txt document
+	public String[] getAddress() {
+		String[] symbols = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"};
+		return symbols;
+	}
+	
+	public ArrayList<Edge> getEdges(Vertex key) {
+		ArrayList<Edge> ret = new ArrayList<Edge>();
+		for(int i = 0; i < edges.size(); i++ ) {
+			if(edges.get(i).fromVertex.equals(key)) ret.add(edges.get(i));
+		}
+		return ret;
+	}
+	
+	public ArrayList<Edge> getVertexKids(String vertex) {
+		ArrayList<Edge> ret = new ArrayList<>();
+		for(Edge e : edges)
+			if(e.fromVertex.symbol.equals(vertex)) {
+				ret.add(e);
+			}
+		return ret;
+	}
 }
